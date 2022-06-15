@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as ContactsAPI from '../utils/ContactsAPI'
 /**N.B. if you create a method for the Class, you need to use .bind(this) if you define the function
  * or you can declare it as constant instead:
  * For instance
@@ -77,6 +78,42 @@ ListContactsFunction.propTypes = {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // Class components
+export class ContactApp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            contacts: []
+        }
+    }
+
+    removeContact = async (contact) => {
+        const deletedContact = await ContactsAPI.remove(contact);
+        console.log(deletedContact)
+        const newContacts = this.state.contacts.filter((c) => {
+            return c.id !== contact.id
+        })
+        this.setState(() => {
+            return {
+                contacts: newContacts
+            }
+        })
+    }
+
+    async componentDidMount() {
+        const contactsList = await ContactsAPI.getAll();
+        this.setState(() => {
+            return { contacts: contactsList }
+        })
+    }
+    render() {
+        return (
+            <ListContacts contacts={this.state.contacts} onDeleteContact={this.removeContact} />
+        )
+    }
+
+}
+
+
 export class ListContacts extends Component {
     // adding props types to Class Component
     static propTypes = {

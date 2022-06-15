@@ -3,7 +3,7 @@ import { Component } from 'react';
 // eslint-disable-next-line
 import { profiles, users, movies, MoviesList, MovieUser, MoviesListFunction } from './components/ListMovies';
 // eslint-disable-next-line
-import { ListContacts, contacts as srcContacts, ListContactsFunction, contacts } from './components/ListContacts';
+import { ListContacts, contacts as srcContacts, ListContactsFunction, contacts, ContactApp } from './components/ListContacts';
 // eslint-disable-next-line
 import { MathGame } from './components/mathGameComponent';
 // eslint-disable-next-line
@@ -46,11 +46,12 @@ class App extends Component {
     return (
       <div>
         {/* Return contacts list, uncheck state={contacts}, removeContact  */}
+        <ContactApp />
         {/* <ListContacts
           contacts={this.state.contacts}
           onDeleteContact={this.removeContact}
-        />
-        <SaySomething /> */}
+        /> */}
+        {/* <SaySomething /> */}
         {/* <ListContactsFunction
           contacts={this.state.contacts}
           onDeleteContact={this.removeContact}
@@ -79,7 +80,7 @@ class App extends Component {
         {/* <VideoGame /> */}
 
         {/* Exercise 1 -- All Together simulation for chatting app*/}
-        <ChatApp />
+        {/* <ChatApp /> */}
       </div>
     )
   }
